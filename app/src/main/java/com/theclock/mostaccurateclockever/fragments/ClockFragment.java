@@ -54,7 +54,6 @@ public class ClockFragment extends Fragment implements ClockPresenter.JSDownload
     public void momentJSDownloaded(String javascript) {
         showClockButton.stopLoader();
         webview.injectJsAndLoad(javascript, this);
-
     }
 
 

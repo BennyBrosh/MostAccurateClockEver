@@ -24,7 +24,17 @@
         <item name="android:layout_height">match_parent</item>
     </style>
 
-    <style name="Clock.WebView.CloseButton" >
+    <style name="Clock.Title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">@dimen/title_margin</item>
+        <item name="android:text">@string/main_title</item>
+        <item name="android:textSize">@dimen/title_size</item>
+        <item name="android:textStyle">bold</item>
+
+    </style>
+
+    <style name="Clock.WebView.CloseButton">
         <item name="android:layout_width">@dimen/webview_close_button_dimen</item>
         <item name="android:layout_height">@dimen/webview_close_button_dimen</item>
         <item name="android:src">@mipmap/close_icon</item>

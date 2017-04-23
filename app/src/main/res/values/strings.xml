@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">MostAccurateClockEver</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="button_text">Show me the time in Lisbon</string>
+    <string name="main_title">Hello agent</string>
 </resources>
