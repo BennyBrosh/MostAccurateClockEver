@@ -9,7 +9,6 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import com.theclock.mostaccurateclockever.R;
 
@@ -83,42 +82,24 @@ public class InjectWebView extends FrameLayout {
 
         @Override
         public void onPageFinished(WebView view, String url) {
-            Toast.makeText(getContext(), "finished loading", Toast.LENGTH_SHORT).show();
-
-
             webView.evaluateJavascript("(function() {" +
                     "var script = document.createElement('script'); " +
                     "script.setAttribute('type','text/javascript'); " +
-                    "script.innerHTML = "+jsToInject+"; " +
+                    "script.setAttribute('src','https://momentjs.com/downloads/moment.min.js'); " +
                     "document.head.appendChild(script)" +
                     " })();", new ValueCallback<String>() {
                 @Override
                 public void onReceiveValue(String s) {
-                    Log.d("LogName", s); // Prints: {"var1":"variable1","var2":"variable2"}
+                    Log.d("LogName", s);
                 }
             });
 
-//            webView.loadUrl("javascript:(function() { document.getElementById('twd').setAttribute('id', 'youre_mine') })()");
-//            webView.loadUrl("javascript:(function() { document.getElementById('youre_mine').outerHTML = 'benny' ;})()");
+            webView.loadUrl("javascript:(function() { document.getElementById('twd').setAttribute('id', 'youre_mine') })()");
+            webView.loadUrl("javascript:(function() { document.getElementById('youre_mine').outerHTML = moment() ;})()");
 //            webView.evaluateJavascript("javascript:(function() { return moment().format() })()", new ValueCallback<String>() {
 //                @Override
 //                public void onReceiveValue(String value) {
 //                    Log.i("value", value);
-//                }
-//            });
-            webView.evaluateJavascript(
-                    "(function() { return ('<html>'+document.getElementsByTagName('html')[0].innerHTML+'</html>'); })();",
-                    new ValueCallback<String>() {
-                        @Override
-                        public void onReceiveValue(String html) {
-                            Log.d("HTML", html);
-                            // code here
-                        }
-                    });
-
-//                @Override
-//                public void onReceiveValue(String value) {
-//                    Toast.makeText(getContext(), value, Toast.LENGTH_SHORT).show();
 //                }
 //            });
 
