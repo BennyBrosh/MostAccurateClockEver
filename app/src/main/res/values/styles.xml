@@ -1,0 +1,36 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+
+    <style name="Clock"></style>
+
+    <style name="Clock.Button" parent="Base.TextAppearance.AppCompat.Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="textColor">@android:color/white</item>
+        <item name="text">@string/button_text</item>
+        <item name="android:layout_marginStart">20dp</item>
+        <item name="android:layout_marginEnd">20dp</item>
+    </style>
+
+    <style name="Clock.WebView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="Clock.WebView.CloseButton" >
+        <item name="android:layout_width">@dimen/webview_close_button_dimen</item>
+        <item name="android:layout_height">@dimen/webview_close_button_dimen</item>
+        <item name="android:src">@mipmap/close_icon</item>
+        <item name="android:background">@color/close_button_opacity</item>
+        <item name="android:scaleType">centerInside</item>
+        <item name="android:padding">@dimen/webview_close_button_dimen</item>
+
+    </style>
+</resources>
