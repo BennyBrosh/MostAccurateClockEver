@@ -2,7 +2,6 @@ package com.theclock.mostaccurateclockever.views;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.webkit.ValueCallback;
 import android.webkit.WebView;
@@ -82,29 +81,26 @@ public class InjectWebView extends FrameLayout {
 
         @Override
         public void onPageFinished(WebView view, String url) {
-            webView.evaluateJavascript("(function() {" +
-                    "var script = document.createElement('script'); " +
-                    "script.setAttribute('type','text/javascript'); " +
-                    "script.setAttribute('src','https://momentjs.com/downloads/moment.min.js'); " +
-                    "document.head.appendChild(script)" +
-                    " })();", new ValueCallback<String>() {
+            webView.evaluateJavascript("javascript:(function() {" +
+                    "var parent = document.getElementsByTagName('head').item(0);" +
+                    "var script = document.createElement('script');" +
+                    "script.type = 'text/javascript';" +
+                    "script.innerHTML = " + jsToInject + ";" +
+                    "parent.appendChild(script)" +
+                    "})()", new ValueCallback<String>() {
                 @Override
                 public void onReceiveValue(String s) {
-                    Log.d("LogName", s);
+
                 }
             });
 
             webView.loadUrl("javascript:(function() { document.getElementById('twd').setAttribute('id', 'youre_mine') })()");
-            webView.loadUrl("javascript:(function() { document.getElementById('youre_mine').outerHTML = moment() ;})()");
-//            webView.evaluateJavascript("javascript:(function() { return moment().format() })()", new ValueCallback<String>() {
-//                @Override
-//                public void onReceiveValue(String value) {
-//                    Log.i("value", value);
-//                }
-//            });
-
+            webView.loadUrl("javascript:(function() { " +
+                    "var time = document.getElementById('youre_mine').textContent; " +
+                    "console.log(time);" +
+                    "document.getElementById('youre_mine').outerHTML = moment(time, \"HH:mm:ss\").add(2, 'hours').format(\"HH:mm:ss\");" +
+                    ";})()");
         }
-
     }
 
 
